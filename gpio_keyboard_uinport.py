@@ -40,30 +40,30 @@ system("modprobe uinput")
 gp.setmode(gp.BCM)
 
 class KeyBtn:
-	# class to associate a GPIO button with a keyboard press
-	def __init__(self,device,key,gpio):
-		self.device = device
-		self.key = key		
-		gp.setup(gpio,gp.IN,pull_up_down = gp.PUD_UP)
-		gp.add_event_detect(gpio,gp.FALLING,callback = self.callback,bouncetime = 100)
-						
-	def callback(self,channel):
+    # class to associate a GPIO button with a keyboard press
+    def __init__(self,device,key,gpio):
+        self.device = device
+        self.key = key		
+        gp.setup(gpio,gp.IN,pull_up_down = gp.PUD_UP)
+        gp.add_event_detect(gpio,gp.FALLING,callback = self.callback,bouncetime = 100)
+                        
+    def callback(self,channel):
         print(self.key)
-		# because of key bounce check button is really down
-		sleep(0.01)
-		if gp.input(channel) == 0:
-			self.device.emit_click(self.key)
-			
+        # because of key bounce check button is really down
+        sleep(0.01)
+        if gp.input(channel) == 0:
+            self.device.emit_click(self.key)
+            
 # create uinput device
 events = list()
 for(key,gpio) in bindings:
-	events.append(key)
+    events.append(key)
 device = ui.Device(events)
 
 # create KeyBtn objects
 for(key,gpio) in bindings:
-	KeyBtn(device,key,gpio)
-	
+    KeyBtn(device,key,gpio)
+    
 # this while loop will make sure the script runs forever
 try:
     while True:
