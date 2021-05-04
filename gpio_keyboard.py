@@ -7,6 +7,7 @@
 import RPi.GPIO as GPIO
 import time
 import uinput as ui
+from os import system
 
 system("modprobe uinput")
 
