@@ -88,7 +88,7 @@ for(key,gpio) in bindings:
 # this while loop will make sure the script runs forever
 try:
     while True:
-        time.sleep(0.2)
+        sleep(0.2)
 
 except KeyboardInterrupt:
     # clean up GPIO on CTRL+C exit
