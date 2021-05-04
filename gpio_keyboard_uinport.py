@@ -48,11 +48,11 @@ class KeyBtn:
 		gp.add_event_detect(gpio,gp.FALLING,callback = self.callback,bouncetime = 100)
 						
 	def callback(self,channel):
+        print(self.key)
 		# because of key bounce check button is really down
 		sleep(0.01)
-        print(self.key)
 		if gp.input(channel) == 0:
-            self.device.emit_click(self.key)
+			self.device.emit_click(self.key)
 			
 # create uinput device
 events = list()
