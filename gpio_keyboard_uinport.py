@@ -52,7 +52,7 @@ class KeyBtn:
 		sleep(0.01)
 		if gp.input(channel) == 0:
             self.device.emit_click(self.key)
-            print(self.key)
+        print(self.key)
 			
 # create uinput device
 events = list()
