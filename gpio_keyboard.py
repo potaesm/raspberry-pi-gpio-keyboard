@@ -6,10 +6,10 @@
 
 import RPi.GPIO as GPIO
 import time
-from pynput.keyboard import Key, Controller
+import uinput as ui
 
 GPIO.setmode(GPIO.BCM)
-keyboard = Controller()
+device = ui.Device(events)
 
 # Assign variable for right and left buttons
 green_button = 16
@@ -24,18 +24,15 @@ GPIO.setup(black_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # define callbacks
 def onGreenButton(channel):
     print('Green button pressed')
-    keyboard.press(Key.enter)
-    keyboard.release(Key.enter)
+    device.emit_click(ui.KEY_ENTER)
 
 def onRedButton(channel):
     print('Red Button Pressed')
-    keyboard.press('r')
-    keyboard.release('r')
+    device.emit_click(ui.KEY_R)
 
 def onBlackButton(channel):
     print('Black button pressed')
-    keyboard.press('b')
-    keyboard.release('b')
+    device.emit_click(ui.KEY_B)
 
 
 # Assign callback to button press event
