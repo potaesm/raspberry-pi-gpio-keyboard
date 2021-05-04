@@ -51,29 +51,8 @@ class KeyBtn:
 		# because of key bounce check button is really down
 		sleep(0.01)
 		if gp.input(channel) == 0:
+            print(self.key)
 			self.device.emit_click(self.key)
-
-class ExitBtn:
-	# class to implement a button that causes program to terminate
-	def __init__(self,gpio):
-		if gpio != 0:
-			gp.setup(gpio,gp.IN,pull_up_down = gp.PUD_UP)
-		self.gpio = gpio
-		
-	def check_continue(self):
-		if self.gpio == 0:
-			return True
-			
-		# return False if button pressed for longer than 2 seconds
-		count = 20
-		while count:
-			if gp.input(self.gpio):
-				# button is not pressed
-				return True
-			sleep(0.1)
-			count -= 1
-		# if we get here it is time to exit	
-		return False	
 			
 # create uinput device
 events = list()
@@ -93,9 +72,6 @@ try:
 except KeyboardInterrupt:
     # clean up GPIO on CTRL+C exit
     gp.cleanup()
-
-# clean up GPIO on normal exit
-gp.cleanup()
 
 # All done so exit
 device.destroy()
