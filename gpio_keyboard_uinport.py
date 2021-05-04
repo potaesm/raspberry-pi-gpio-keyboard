@@ -92,10 +92,10 @@ try:
 
 except KeyboardInterrupt:
     # clean up GPIO on CTRL+C exit
-    GPIO.cleanup()
+    gp.cleanup()
 
 # clean up GPIO on normal exit
-GPIO.cleanup()
+gp.cleanup()
 
 # All done so exit
 device.destroy()
