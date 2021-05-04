@@ -24,8 +24,8 @@ GPIO.setup(black_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # define callbacks
 def onGreenButton(channel):
     print('Green button pressed')
-    keyboard.press('g')
-    keyboard.release('g')
+    keyboard.press(Key.enter)
+    keyboard.release(Key.enter)
 
 def onRedButton(channel):
     print('Red Button Pressed')
