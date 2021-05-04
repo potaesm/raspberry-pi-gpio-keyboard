@@ -26,8 +26,8 @@ from time import sleep
 # TODO change this to suit your needs
 # if you do not want a shutdown key set to 0
 GREEN_GPIO = 16
-RED_GPIO = 16
-BLACK_GPIO = 16
+RED_GPIO = 20
+BLACK_GPIO = 21
 
 # create bindings between keys and gpio
 # TODO - change this to suit your needs

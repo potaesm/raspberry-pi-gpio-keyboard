@@ -8,13 +8,21 @@ import RPi.GPIO as GPIO
 import time
 import uinput as ui
 
+system("modprobe uinput")
+
 GPIO.setmode(GPIO.BCM)
-device = ui.Device(events)
 
 # Assign variable for right and left buttons
 green_button = 16
 red_button = 20
 black_button = 21
+
+bindings = ((ui.KEY_R, red_button),(ui.KEY_B, black_button),(ui.KEY_ENTER, green_button))
+# create uinput device
+events = list()
+for(key,gpio) in bindings:
+	events.append(key)
+device = ui.Device(events)
 
 #configure the button pins to pull up 
 GPIO.setup(green_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
