@@ -50,9 +50,9 @@ class KeyBtn:
 	def callback(self,channel):
 		# because of key bounce check button is really down
 		sleep(0.01)
+        print(self.key)
 		if gp.input(channel) == 0:
             self.device.emit_click(self.key)
-        print(self.key)
 			
 # create uinput device
 events = list()
