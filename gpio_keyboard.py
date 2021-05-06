@@ -46,6 +46,7 @@ for (key, gpio) in bindings:
     KeyGpio(device, key, gpio)
 
 # Run this script forever
+is_interrupt = False
 try:
     while True:
         sleep(0.2)
@@ -53,7 +54,9 @@ except KeyboardInterrupt:
     # Clean up GPIO on CTRL+C exit
     device.destroy()
     GPIO.cleanup()
+    is_interrupt = True
 
 # Clean up GPIO on normal exit
-device.destroy()
-GPIO.cleanup()
+if not is_interrupt:
+    device.destroy()
+    GPIO.cleanup()
