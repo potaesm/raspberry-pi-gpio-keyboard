@@ -16,7 +16,7 @@ class KeyGpio:
 
     def callback(self, channel):
         # Debounce and check if gpio pull to GND
-        sleep(0.01)
+        sleep(0.05)
         if GPIO.input(channel) == 0:
             self.device.emit_click(self.key)
 
@@ -49,7 +49,7 @@ for (key, gpio) in bindings:
 is_interrupt = False
 try:
     while True:
-        sleep(0.2)
+        sleep(0.1)
 except KeyboardInterrupt:
     # Clean up GPIO on CTRL+C exit
     device.destroy()
